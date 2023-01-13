@@ -1,7 +1,7 @@
-
-let cardNum
-
-let parrots = [
+let deck = [];
+let cardNum;
+const main = document.querySelector('main');
+const parrots = [
 
     'bobross',
     'explody',
@@ -14,15 +14,24 @@ let parrots = [
 ]
 
 function comparador() { 
+
 	return Math.random() - 0.5; 
+
 }
 
-const main = document.querySelector('main');
+function criarDeck(){
+  
+  for(let k = 0; k < cardNum / 2; k++){
+
+    deck.push(parrots[k])
+
+  }
+}
 
 //criação das cartas com imagens
 function createCards(){
 
-  const duplicateParrots = [ ...parrots, ...parrots ]
+  const duplicateParrots = [ ...deck, ...deck ]
 
   let mixedParrots = duplicateParrots.sort(comparador)
   console.log(mixedParrots)
@@ -46,6 +55,7 @@ function createCards(){
     front.appendChild(imgFront);
     front.classList.add('face', 'front');
 
+    card.setAttribute('data-id', mixedParrots[i])
     card.classList.add('card');
     card.appendChild(front);
     card.appendChild(back);
@@ -61,6 +71,7 @@ function start(){
 
     if(cardNum > 3 && cardNum <15 && cardNum % 2 == 0){
         alert(`inciando com ${cardNum}`);
+        criarDeck()
         createCards()
     }else{
         alert('Quantidade inválida!');
