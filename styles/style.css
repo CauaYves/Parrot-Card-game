@@ -6,6 +6,7 @@ header{
 }
 
 h1{
+    margin: 40px;
     font-family: Roboto;
     color: #75B79E;
     font-size: 56px;
@@ -16,8 +17,19 @@ body{
     background-color: #eef9bf;
 }
 
-main{
+#table-cards{
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    margin: auto;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 img{
@@ -32,8 +44,8 @@ img{
   }
 
   .face {
-    width: 100%;
-    height: 100%;
+    width: 117px;
+    height: 146px;
     background-color: #A7E9AF;
     border-radius: 10px;
     box-shadow: 1px 1px 1px rgba(0,0,0,.3);
@@ -45,15 +57,38 @@ img{
     transition: all .5s;
     transform-style: preserve-3d;
   }
-
-  .back-face {
+  .back {
     transform: rotateY(180deg);
   }
 
-  .card:hover .back-face {
+  .card:hover .back {
     transform: rotateY(0deg);
   }
 
-  .card:hover .front-face {
+  .card:hover .front {
     transform: rotateY(-180deg);
   }
+
+
+  @media (max-width:460px) {
+    main{
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap;
+
+    }
+}
+
+/*
+      .back-face {
+        transform: rotateY(180deg);
+      }
+
+      .card:hover .back-face {
+        transform: rotateY(0deg);
+      }
+
+      .card:hover .front-face {
+        transform: rotateY(-180deg);
+      }
+*/
