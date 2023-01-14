@@ -1,6 +1,18 @@
 let deck = [];
 let cardNum;
 const main = document.querySelector('main');
+
+function turnCard(card){ 
+
+  card.childNodes[1].classList.toggle('front');
+  card.childNodes[1].classList.toggle('frontTurn');
+
+  card.childNodes[3].classList.toggle('back');
+  card.childNodes[3].classList.toggle('unTurn');
+
+  console.log(card.childNodes);
+}
+
 const parrots = [
 
     'bobross',
@@ -39,28 +51,17 @@ function createCards(){
   let i = 0
 
   while(i < cardNum){
-    const card = document.createElement('div');
-    const front = document.createElement('div');
-    const back = document.createElement('div');
-    const imgFront = document.createElement('img');
-    const imgBack = document.createElement('img');
-    
-    imgBack.setAttribute('src', `imagens/${mixedParrots[i]}parrot.gif`);
-    imgFront.setAttribute('src', 'imagens/back.png')
 
-    
-    back.appendChild(imgBack);
-    back.classList.add('face', 'back');
-
-    front.appendChild(imgFront);
-    front.classList.add('face', 'front');
-
-    card.setAttribute('data-id', mixedParrots[i])
-    card.classList.add('card');
-    card.appendChild(front);
-    card.appendChild(back);
-
-    main.appendChild(card);
+   main.innerHTML+=  `
+    <div class="card" onclick="turnCard(this)">
+      <div class="front face">
+          <img src="imagens/back.png" alt="">
+      </div>
+      <div class="back face">
+          <img src="imagens/${mixedParrots[i]}parrot.gif" alt="card">
+      </div>
+    </div>
+   `
     i++
   }
 }
@@ -75,7 +76,7 @@ function start(){
         createCards()
     }else{
         alert('Quantidade inválida!');
-      //realocar o start()
-    }
+        start()
+      }
 }
-  start();
+start()

@@ -41,6 +41,7 @@ img{
     height: 146px;
     margin: 17px;
     position: relative;
+    transition: all 1s;
   }
 
   .face {
@@ -57,18 +58,22 @@ img{
     transition: all .5s;
     transform-style: preserve-3d;
   }
-  .back {
+
+  .back{
     transform: rotateY(180deg);
   }
 
-  .card:hover .back {
+  .backTurn{
     transform: rotateY(0deg);
   }
 
-  .card:hover .front {
-    transform: rotateY(-180deg);
+  .front{
+    transform: rotateY(0deg);
   }
 
+  .frontTurn {
+    transform: rotateY(-180deg);
+  }
 
   @media (max-width:460px) {
     main{
