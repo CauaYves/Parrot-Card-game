@@ -7,10 +7,6 @@ const main = document.querySelector('main');
 function endGame(){
   if(parFounds === cardNum / 2){
     window.alert(`Você ganhou em ${clicks} jogadas!`)
-  }else{
-    console.log("!")
-    console.log(cardNum)
-    console.log(parFounds)
   }
 }
 
@@ -110,12 +106,12 @@ function createCards(){
   while(i < cardNum){
 
    main.innerHTML+=  `
-    <div class="card" onclick="turnCard(this)" data-id="${mixedParrots[i]}">
+    <div class="card" onclick="turnCard(this)" data-id="${mixedParrots[i]}" data-test="card">
       <div class="front face">
-          <img src="imagens/back.png" alt="">
+          <img src="imagens/back.png" alt="back" data-test="face-down-image">
       </div>
       <div class="back face">
-          <img src="imagens/${mixedParrots[i]}parrot.gif" alt="card">
+          <img src="imagens/${mixedParrots[i]}parrot.gif" alt="card" data-test="face-up-image">
       </div>
     </div>
    `
