@@ -1,6 +1,19 @@
 let deck = [];
 let cardNum;
+let clicks = 0;
+let parFounds = 0;
 const main = document.querySelector('main');
+
+function endGame(){
+  if(parFounds === cardNum / 2){
+    window.alert(`Você ganhou em ${clicks} jogadas!`)
+  }else{
+    console.log("!")
+    console.log(cardNum)
+    console.log(parFounds)
+  }
+}
+
 
 function unTurn(){
   firstCard.childNodes[1].classList.remove('frontTurn');
@@ -23,11 +36,12 @@ function verify() {
   if(firstId === secondId){ //achou um par
     firstCard = undefined;
     secondCard = undefined;
-    return
+    parFounds++
+    setTimeout(endGame, 1000)
   }else if(firstId != secondId){ //não achou um par, elas se viram 
     setTimeout(unTurn, 1000)
   }
-  
+
 }
 
 
@@ -42,12 +56,14 @@ function turnCard(card){
     firstCard = card
     card.childNodes[1].classList.add('frontTurn');
     card.childNodes[3].classList.remove('back');
+    clicks++
 
   }else if(secondCard === undefined) {
 
     secondCard = card
     card.childNodes[1].classList.add('frontTurn')
     card.childNodes[3].classList.remove('back')
+    clicks++
     verify()
   }
 
