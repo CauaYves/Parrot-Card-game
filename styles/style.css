@@ -63,14 +63,6 @@ img{
     transform: rotateY(180deg);
   }
 
-  .backTurn{
-    transform: rotateY(0deg);
-  }
-
-  .front{
-    transform: rotateY(0deg);
-  }
-
   .frontTurn {
     transform: rotateY(-180deg);
   }

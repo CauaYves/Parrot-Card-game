@@ -2,15 +2,56 @@ let deck = [];
 let cardNum;
 const main = document.querySelector('main');
 
+function unTurn(){
+  firstCard.childNodes[1].classList.remove('frontTurn');
+  firstCard.childNodes[3].classList.add('back');
+
+  secondCard.childNodes[1].classList.remove('frontTurn');
+  secondCard.childNodes[3].classList.add('back');
+
+  firstCard = undefined;
+  secondCard = undefined;
+}
+
+let firstCard;
+let secondCard;
+
+function verify() {
+  let firstId = firstCard.getAttribute('data-id');
+  let secondId = secondCard.getAttribute('data-id');
+  
+  if(firstId === secondId){ //achou um par
+    firstCard = undefined;
+    secondCard = undefined;
+    return
+  }else if(firstId != secondId){ //não achou um par, elas se viram 
+    setTimeout(unTurn, 1000)
+  }
+  
+}
+
+
 function turnCard(card){ 
 
-  card.childNodes[1].classList.toggle('front');
-  card.childNodes[1].classList.toggle('frontTurn');
+  if(card.childNodes[1].classList.contains('frontTurn')){
+    return
+  }
 
-  card.childNodes[3].classList.toggle('back');
-  card.childNodes[3].classList.toggle('unTurn');
+  if(firstCard === undefined){
 
-  console.log(card.childNodes);
+    firstCard = card
+    card.childNodes[1].classList.add('frontTurn');
+    card.childNodes[3].classList.remove('back');
+
+  }else if(secondCard === undefined) {
+
+    secondCard = card
+    card.childNodes[1].classList.add('frontTurn')
+    card.childNodes[3].classList.remove('back')
+    verify()
+  }
+
+
 }
 
 const parrots = [
@@ -41,19 +82,19 @@ function criarDeck(){
 }
 
 //criação das cartas com imagens
+
 function createCards(){
 
   const duplicateParrots = [ ...deck, ...deck ]
 
   let mixedParrots = duplicateParrots.sort(comparador)
-  console.log(mixedParrots)
 
   let i = 0
 
   while(i < cardNum){
 
    main.innerHTML+=  `
-    <div class="card" onclick="turnCard(this)">
+    <div class="card" onclick="turnCard(this)" data-id="${mixedParrots[i]}">
       <div class="front face">
           <img src="imagens/back.png" alt="">
       </div>
