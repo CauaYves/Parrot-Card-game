@@ -121,7 +121,7 @@ function createCards(){
 
 //validação
 function start(){
-    cardNum = Number(prompt('Com quantas cartas quer jogar?'));
+    cardNum = Number(prompt('com quantas cartas quer jogar?[4 até 14]'));
 
     if(cardNum > 3 && cardNum <15 && cardNum % 2 == 0){
         alert(`inciando com ${cardNum}`);
