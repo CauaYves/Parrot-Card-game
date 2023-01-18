@@ -1,15 +1,23 @@
 let deck = [];
 let cardNum;
+let res;
 let clicks = 0;
 let parFounds = 0;
 const main = document.querySelector('main');
+function finalizarJogo(){
+  const fim = window.confirm('reiniciar jogo?')
+
+    location.reload(fim)
+  
+  }
+
 
 function endGame(){
   if(parFounds === cardNum / 2){
     window.alert(`Você ganhou em ${clicks} jogadas!`)
+    finalizarJogo()
   }
 }
-
 
 function unTurn(){
   firstCard.childNodes[1].classList.remove('frontTurn');
